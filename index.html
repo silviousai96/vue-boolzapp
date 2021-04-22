@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <title>Boolzapp</title>
+</head>
+<body>
+            
+        <div id="root" class="wrapper">
+            
+            <div class="app-container">
+                
+                <div class="contacts">
+                    <nav class="nav-contacts">
+                        <div class="my-logo">
+                            <img src="img/avatar_io.jpg" alt="">
+                        </div>
+
+                        <span>Nome Utente</span>
+
+                        <div class="nav-contact-icons">
+                            <i class="fas fa-circle-notch"></i>
+                            <i class="fas fa-comment-alt"></i>
+                            <i class="fas fa-ellipsis-v"></i>
+                        </div>
+            
+                    </nav>
+
+                    <div class="notifications">
+                        
+                        <div class="bell">
+                            <i class="fas fa-bell-slash"></i>
+                        </div>
+                        
+                        <div class="notifications-msg">
+                            <h5>Ricevi notifiche di nuovi messaggi.</h5>
+                            <span>Attiva notifiche desktop</span>
+                        </div>
+                        
+                    </div>
+
+                    <div class="search">
+                        <i class="fas fa-search"></i>
+                        <input type="text" name="" id="" placeholder="Cerca o inizia una nuova chat">
+                    </div>
+
+                    <div class="names">
+                        <ul>
+                            <!-- <li>
+                                <img src="img/avatar_1.jpg" alt="">
+                                <span>Roberta</span>
+                            </li> -->
+                            <li v-for="(contact, index) in contacts">
+                                <img :src="'img/avatar' + contacts[index].avatar + '.jpg'" alt="">
+                                <span>{{ contact.name }}</span>
+                            </li>
+
+                            
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="conversation">
+                    
+                    <nav class="nav-conversation">
+                        <div class="my-logo">
+                            <img src="img/avatar_io.jpg" alt="">
+                        </div>
+
+                        <span>Nome Utente</span>                       
+            
+                    </nav>
+
+                </div>
+            </div>
+
+        </div>
+    
+    
+    
+    <script src="path/to/dayjs/dayjs.min.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
+</body>
+</html>
