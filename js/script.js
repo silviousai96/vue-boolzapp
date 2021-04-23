@@ -2,6 +2,10 @@ var app = new Vue({
     
     el: '#root',
     data: {
+        //per fare le operazioni necessarie a far funzionare l'applicazione, gli servirà sapere quale è il contatto attivo in quel momento.
+        //quindi mettiamo una nuova proprietà (activeContact) e gli mettiamo di default 0. 
+        //In questo modo creiamo un collegamento tra l'indice di un oggetto e l'elemento corrente attivo.
+        activeContact: 0, 
         contacts: [
             {
                 name: 'Michele',
@@ -71,7 +75,7 @@ var app = new Vue({
             },
             {
                 name: 'Luisa',
-                avatar: '_4',
+                avatar: '_6',
                 visible: true,
                 messages: [
                     {
@@ -89,7 +93,9 @@ var app = new Vue({
         ]
     },
     methods: {
-
+        setActiveContact(index) {
+            this.activeContact = index;
+        }
     }
     
 });

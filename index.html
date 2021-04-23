@@ -17,7 +17,7 @@
             
             <div class="app-container">
                 
-                <div class="contacts">
+                <div class="left-section">
                     <nav class="nav-contacts">
                         <div class="my-logo">
                             <img src="img/avatar_io.jpg" alt="">
@@ -57,8 +57,11 @@
                                 <img src="img/avatar_1.jpg" alt="">
                                 <span>Roberta</span>
                             </li> -->
-                            <li v-for="(contact, index) in contacts">
-                                <img :src="'img/avatar' + contacts[index].avatar + '.jpg'" alt="">
+                            <li 
+                            v-for="(contact, index) in contacts" 
+                            :class="{ 'active' : index == activeContact}"
+                            @click="setActiveContact(index)">
+                                <img v-bind:src="'img/avatar' + contact.avatar + '.jpg'" alt="{{ contact.name }}">
                                 <span>{{ contact.name }}</span>
                             </li>
 
@@ -67,15 +70,15 @@
                     </div>
                 </div>
 
-                <div class="conversation">
+                <div class="right-section">
                     
                     <nav class="nav-conversation">
                         <div class="my-logo">
-                            <img src="img/avatar_io.jpg" alt="">
+                            <img :src="'img/avatar' + contacts[activeContact].avatar + '.jpg'" alt="">
                         </div>
 
                         <div class="main-contact">
-                            <span>Nome Utente</span>                        
+                            <span>{{ contacts[activeContact].name }}</span>                        
                             <span class="min">Ultimo Accesso oggi alle</span>
                         </div>
 
@@ -88,14 +91,20 @@
                     </nav>
 
                     <div class="message-area">
+                        
+                        <div v-for="message in contacts[activeContact].messages" class="message" :class="message.status">
+                            <div class="message-text">{{ message.text }}</div>
 
+                            <div class="message-date">{{ message.date }}</div>
+                        </div>
+                   
                     </div>
 
                     <footer>
                         <i class="far fa-smile"></i>
 
                         <div class="text-input">
-                            <input type="text" name="" id="">
+                            <input type="text" name="" id="" placeholder="Aggiungi un messaggio">
                         </div>
 
                         <i class="fas fa-microphone"></i>
