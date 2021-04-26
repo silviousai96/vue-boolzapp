@@ -48,7 +48,7 @@
 
                     <div class="search">
                         <i class="fas fa-search"></i>
-                        <input type="text" name="" id="" placeholder="Cerca o inizia una nuova chat">
+                        <input type="text" name="" id="" v-model="userFilter" @keyup="filterContacts" placeholder="Cerca o inizia una nuova chat">
                     </div>
 
                     <div class="names">
@@ -59,6 +59,7 @@
                             </li> -->
                             <li 
                             v-for="(contact, index) in contacts" 
+                            v-if="contact.visible"
                             :class="{ 'active' : index == activeContact}"
                             @click="setActiveContact(index)">
                                 <img v-bind:src="'img/avatar' + contact.avatar + '.jpg'" alt="{{ contact.name }}">
@@ -104,7 +105,12 @@
                         <i class="far fa-smile"></i>
 
                         <div class="text-input">
-                            <input type="text" name="" id="" placeholder="Aggiungi un messaggio">
+                            <input type="text" 
+                            name="" 
+                            id="" 
+                            placeholder="Aggiungi un messaggio" 
+                            v-model="userNewMessage"
+                            @keyup.enter="addNewMessage">
                         </div>
 
                         <i class="fas fa-microphone"></i>
@@ -119,7 +125,7 @@
     
     
     
-    <script src="path/to/dayjs/dayjs.min.js"></script>
+    <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
     <script type="text/javascript" src="js/script.js"></script>
 </body>
 </html>

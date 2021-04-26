@@ -6,6 +6,8 @@ var app = new Vue({
         //quindi mettiamo una nuova proprietà (activeContact) e gli mettiamo di default 0. 
         //In questo modo creiamo un collegamento tra l'indice di un oggetto e l'elemento corrente attivo.
         activeContact: 0, 
+        userNewMessage: '',
+        userFilter: '',
         contacts: [
             {
                 name: 'Michele',
@@ -95,7 +97,48 @@ var app = new Vue({
     methods: {
         setActiveContact(index) {
             this.activeContact = index;
-        }
+        },
+        //funzione per inserire un nuovo messaggio da parte dell'utente con il tasto invio
+        addNewMessage() {
+            const newMsg = {
+                date:   dayjs().format('DD/MM/YYYY HH:mm:ss'),
+                text: this.userNewMessage,
+                status: 'sent'
+            }
+            console.log(newMsg);
+            this.contacts[this.activeContact].messages.push(newMsg);
+            this.userNewMessage = '';
+
+            //arrow function per avere in automatico dopo un secondo come risposta un messaggio dal computer
+            setTimeout(() => {
+                const newReplyMsg = {
+                    date:   dayjs().format('DD/MM/YYYY HH:mm:ss'),
+                    text: 'Ok',
+                    status: 'received'                   
+                }
+                
+                this.contacts[this.activeContact].messages.push(newReplyMsg);
+
+            }, 1000);
+        },
+
+        filterContacts() {
+            const userFilterLowerCase = this.userFilter.toLowerCase();
+            
+            this.contacts.forEach((contact) => {
+                //nome del contatto in minuscolo
+                const contactNameLowerCase = contact.name.toLowerCase();
+                
+                //verifichiamo se quello che scrive un utente nella input corrisponde ad un contatto nella lista
+                //se è vero, contactVisible = true
+                //se è falso, contactVisible = false
+                if( contactNameLowerCase.includes(userFilterLowerCase) ) {
+                    contact.visible = true; 
+                } else {
+                    contact.visible = false; 
+                }
+            }); 
+        },
     }
     
 });

@@ -33,6 +33,9 @@ img {
     width: 35%;
     height: 100%;
     background-color: white;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
 
@@ -110,6 +113,11 @@ img {
 .search input {
     padding: 5px;
     width: 75%;
+}
+
+.names {
+    overflow-y: auto;
+    flex-grow: 1;
 }
 
 .names span {
